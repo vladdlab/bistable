@@ -1,5 +1,10 @@
+
+import MainLayout from './layouts/MainLayout.vue';
+
 <template>
-  <div>
-    <NuxtWelcome />
-  </div>
+  <NuxtLayout>
+    <div>
+      Hey
+    </div>
+  </NuxtLayout>
 </template>
