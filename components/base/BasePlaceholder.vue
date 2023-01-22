@@ -1,5 +1,6 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-slate-100 pl-24">
+  <div class="flex flex-col items-center justify-center min-w-full rounded-3xl
+   bg-white text-slate-500">
     <slot />
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-slate-100 pl-24">
-    <slot />
+  <div class="flex flex-col grow gap-6 items-center justify-center">
+    <slot></slot>
   </div>
 </template>
 
