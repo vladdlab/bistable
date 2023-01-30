@@ -18,12 +18,9 @@ export default {
 
 <script setup lang="ts">
 const emit = defineEmits(['update:modelValue'])
-const props =  defineProps({
-  modelValue: {
-    type: String,
-    required: true
-  }
-})
+const props =  defineProps<{
+  modelValue: string
+}>()
 
 function handleInput(event: Event) {
   emit('update:modelValue', (event.target as HTMLInputElement).value)
