@@ -6,3 +6,8 @@ node_modules
 .output
 .env
 dist
+
+data_public_key.bin
+data_private_key.bin
+
+.netlify
