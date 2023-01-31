@@ -26,9 +26,6 @@ export default defineNuxtConfig({
 
   },
   nitro: {
-    plugins: [
-      '~/server/plugins/connectToDb.ts'
-    ],
     storage: {
       'redis': {
         driver: 'redis',

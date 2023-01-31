@@ -1,47 +1,28 @@
-import { MongoClient, MongoClientOptions  } from "mongodb";
-import { ClientEncryption, ClientEncryptionOptions } from 'mongodb-client-encryption'
+import { MongoClient } from "mongodb";
+import { ClientEncryption } from 'mongodb-client-encryption'
 import { checkMongoDataKey } from "./checkMongoDataKey";
+const config = useRuntimeConfig();
 
-class MongoDb {
-  private _client: MongoClient | undefined;
-  private _encryption: ClientEncryption | undefined;
+const keyVaultNamespace = `${config.mongoKeyVaultDatabase}.${config.mongoKeyVaultCollection}`;
+const kmsProviders = {
+  [config.provider]: {
+    accessKeyId: config.providerAccessKeyId,
+    secretAccessKey: config.providerSecretAccessKey,
+  },
+};
 
-  get client(): MongoClient | never  {
-    if (!this._client) {
-      throw new Error("MongoClient has not been connected yet. Run connectToMongo() first.");
-    }
-    return this._client;
-  }
-  set client(input: MongoClient) {
-    this._client = input;
-  }
+export const client = new MongoClient(config.mongoUrl, {
+  minPoolSize: 2,
+  autoEncryption: {
+    keyVaultNamespace,
+    kmsProviders,
+    bypassAutoEncryption: true,
+  },
+})
 
-  get encryption(): ClientEncryption | never  {
-    if (!this._encryption) {
-      throw new Error("MongoClient has not been connected yet. Run connectToMongo() first.");
-    }
-    return this._encryption;
-  }
-  set encryption(input: ClientEncryption ) {
-    this._encryption = input;
-  }
+export const encryption = new ClientEncryption(client, {
+  keyVaultNamespace,
+  kmsProviders,
+})
 
-  async connect(url: string, options: MongoClientOptions, encryptionOptions?: ClientEncryptionOptions ) {
-    try {
-      this._client = new MongoClient(url, options);
-
-      await this._client.connect();
-
-      if (encryptionOptions) {
-        this._encryption = new ClientEncryption(this._client, encryptionOptions)
-        await checkMongoDataKey(this._encryption)
-      }
-      console.log(`Successfully connected to database`);
-    } catch (error) {
-      console.error("DB connection failed.", error)
-      throw error;
-    }
-  }
-}
-
-export const mongoDb = new MongoDb()
+checkMongoDataKey(encryption);
