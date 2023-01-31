@@ -10,7 +10,7 @@ const credentials = {
 
 const client = new KMSClient({ region: config.CmkRegion, credentials });
 
-const keysDirectory = config.dataKeysDir || './keys';
+const keysDirectory = config.dataKeysDir || 'keys';
 if (!existsSync(keysDirectory)) {
   mkdirSync(keysDirectory, { recursive: true });
 }

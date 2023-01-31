@@ -59,7 +59,7 @@ const errorMessage = ref('')
 const register = handleSubmit(async (values) => {
   const { error } = await useFetch('/api/auth/register', { method: 'POST', body: values })
   if (error.value) {
-    errorMessage.value = error.value.statusMessage || '';
+    errorMessage.value = error.value.message || '';
   } else {
     const router = useRouter();
     router.push('/dashboard');

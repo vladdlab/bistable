@@ -1,5 +1,6 @@
 import { H3Event, createError, readBody, setCookie } from 'h3'
 import { createUser, findUser, signToken } from '~~/server/services/user.service';
+import { LoginUserInput, RegisterUserInput } from '~~/server/schemas/user.schema';
 const config = useRuntimeConfig();
 
 // Cookie options
@@ -15,12 +16,8 @@ const accessTokenCookieOptions = {
 
 export const registerHandler = async (event: H3Event) => {
   try {
-    const body = await readBody(event);
-    const user = await createUser({
-      email: body.email,
-      name: body.name,
-      password: body.password,
-    });
+    const body: RegisterUserInput = await readBody(event);
+    const user = await createUser(body);
 
     // Create an Access Token
     const accessToken = await signToken(user);
@@ -52,8 +49,10 @@ export const registerHandler = async (event: H3Event) => {
 
 export const loginHandler = async (event: H3Event) => {
   try {
-    const body = await readBody(event);
+    const body: LoginUserInput = await readBody(event);
+
     const user = await findUser({ email: body.email });
+    console.log(body, user)
 
     // Check if user exist and password is correct
     if (!user || user.password !== body.password) {
