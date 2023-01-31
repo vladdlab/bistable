@@ -1,16 +1,19 @@
 import { KMSClient, DecryptCommand, GenerateDataKeyPairWithoutPlaintextCommand } from "@aws-sdk/client-kms";
 import { writeFileSync, readFileSync, existsSync, mkdirSync  } from 'fs'
+import { fileURLToPath } from 'url';
 import path from 'path';
 const config = useRuntimeConfig();
 
+// AWS client
 const credentials = {
   accessKeyId: config.providerAccessKeyId,
   secretAccessKey: config.providerSecretAccessKey,
 }
-
 const client = new KMSClient({ region: config.CmkRegion, credentials });
 
-const keysDirectory = config.dataKeysDir || 'keys';
+// Keys directory
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const keysDirectory = path.join(__dirname, config.dataKeysDir || 'keys');
 if (!existsSync(keysDirectory)) {
   mkdirSync(keysDirectory, { recursive: true });
 }
@@ -58,11 +61,6 @@ export async function getPublicKey() {
 }
 
 export async function decryptPrivateKey(encryptedPrivateKey: Uint8Array) {
-  const credentials = {
-    accessKeyId: config.providerAccessKeyId,
-    secretAccessKey: config.providerSecretAccessKey,
-  }
-  const client = new KMSClient({ region: config.CmkRegion, credentials });
   const command = new DecryptCommand({
     KeyId: config.CmkKey,
     CiphertextBlob: encryptedPrivateKey
