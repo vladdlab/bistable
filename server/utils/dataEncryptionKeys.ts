@@ -1,6 +1,5 @@
 import { KMSClient, DecryptCommand, GenerateDataKeyPairWithoutPlaintextCommand } from "@aws-sdk/client-kms";
-import { writeFileSync, readFileSync, existsSync, mkdirSync  } from 'fs'
-import { resolve } from 'path';
+import { writeFileSync, readFileSync } from 'fs'
 const config = useRuntimeConfig();
 
 // AWS client
@@ -10,12 +9,6 @@ const credentials = {
 }
 const client = new KMSClient({ region: config.CmkRegion, credentials });
 
-// Keys directory
-const keysDirectory = resolve('server', config.dataKeysDir || 'keys');
-if (!existsSync(keysDirectory)) {
-  mkdirSync(keysDirectory, { recursive: true });
-}
-
 export async function makeDataKey() {
   const command = new GenerateDataKeyPairWithoutPlaintextCommand({
     KeyId: config.CmkKey,
@@ -24,8 +17,8 @@ export async function makeDataKey() {
 
   const response = await client.send(command);
   try {
-    writeFileSync(resolve(keysDirectory, 'data_public_key.bin'), Buffer.from(response.PublicKey as Buffer));
-    writeFileSync(resolve(keysDirectory, 'data_private_key.bin'), Buffer.from(response.PrivateKeyCiphertextBlob as Buffer));
+    writeFileSync('data_public_key.bin', Buffer.from(response.PublicKey as Buffer));
+    writeFileSync('data_private_key.bin', Buffer.from(response.PrivateKeyCiphertextBlob as Buffer));
   } catch(error) {
     console.error(error)
     throw error
@@ -35,7 +28,7 @@ export async function makeDataKey() {
 
 export async function getEncryptedPrivateKey() {
   let uint8ArrayBuffer: Uint8Array;
-  const filePath = resolve(keysDirectory, 'data_private_key.bin');
+  const filePath = 'data_private_key.bin';
   try {
     uint8ArrayBuffer = readFileSync(filePath);
   } catch {
@@ -47,7 +40,7 @@ export async function getEncryptedPrivateKey() {
 
 export async function getPublicKey() {
   let uint8ArrayBuffer: Uint8Array;
-  const filePath = resolve(keysDirectory, 'data_public_key.bin');
+  const filePath = 'data_public_key.bin';
   try {
     uint8ArrayBuffer = readFileSync(filePath);
   } catch {
