@@ -17,6 +17,9 @@ declare global {
       PROVIDER_SECRET_ACCESS_KEY: string;
       CMK_KEY: string;
       CMK_REGION: string;
+
+      DATA_KEY_PR: string,
+      DATA_KEY_PB: string,
     }
   }
 }

@@ -22,6 +22,8 @@ export default defineNuxtConfig({
     CmkKey: process.env.CMK_KEY,
     CmkRegion: process.env.CMK_REGION,
     accessTokenExpiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN,
+    dataKeyPr: process.env.DATA_KEY_PR,
+    dataKeyPb: process.env.DATA_KEY_PB
 
   },
   nitro: {
