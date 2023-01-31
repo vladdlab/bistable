@@ -28,7 +28,7 @@ import { toFormValidator } from '@vee-validate/zod';
 import { loginUserSchema } from '~~/server/schemas/user.schema';
 
 definePageMeta({
-  layout: "auth",
+layout: "auth",
 });
 
 // Form Schema

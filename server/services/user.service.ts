@@ -20,7 +20,7 @@ export const findAllUsers = async () => {
 }
 
 export const createUser = async (user: User) => {
-  user.password = (await mongoDb.encryption.encrypt(user.password, { keyAltName: config.mongoDataKeyAltName, algorithm: 'AEAD_AES_256_CBC_HMAC_SHA_512-Deterministic' })).toString()
+  user.password = await mongoDb.encryption.encrypt(user.password, { keyAltName: config.mongoDataKeyAltName, algorithm: 'AEAD_AES_256_CBC_HMAC_SHA_512-Deterministic' })
   const result = await mongoDb.client.db("bistable").collection<User>('users').insertOne(user);
   user._id = result.insertedId;
   return user;
@@ -34,7 +34,7 @@ export const signToken = async (user: User) => {
     }
   );
 
-  await useStorage().setItem((user._id).toString(), user, {
+  await useStorage().setItem((user._id || '').toString(), user, {
     EX: 60 * 60 * 60,
   });
 
