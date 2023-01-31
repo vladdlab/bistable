@@ -19,7 +19,6 @@ export default defineNuxtConfig({
     provider: process.env.PROVIDER,
     providerAccessKeyId: process.env.PROVIDER_ACCESS_KEY_ID,
     providerSecretAccessKey: process.env.PROVIDER_SECRET_ACCESS_KEY,
-    dataKeysDir: process.env.DATA_KEYS_DIR,
     CmkKey: process.env.CMK_KEY,
     CmkRegion: process.env.CMK_REGION,
     accessTokenExpiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN,
