@@ -16,7 +16,7 @@ const encryptionOptions = {
 export default defineNitroPlugin(async () => {
   try {
     await mongoDb.connect(config.mongoUrl, {
-      serverSelectionTimeoutMS: 10000,
+      serverSelectionTimeoutMS: 100000,
       minPoolSize: 2,
       autoEncryption: {
         keyVaultNamespace,
