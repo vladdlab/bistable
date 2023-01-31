@@ -11,7 +11,7 @@ const credentials = {
 const client = new KMSClient({ region: config.CmkRegion, credentials });
 
 // Keys directory
-const keysDirectory = path.join('server/', config.dataKeysDir || 'keys');
+const keysDirectory = path.join(process.cwd(), 'server/', config.dataKeysDir || 'keys');
 if (!existsSync(keysDirectory)) {
   mkdirSync(keysDirectory, { recursive: true });
 }
