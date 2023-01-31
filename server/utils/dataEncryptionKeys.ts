@@ -1,6 +1,5 @@
 import { KMSClient, DecryptCommand, GenerateDataKeyPairWithoutPlaintextCommand } from "@aws-sdk/client-kms";
 import { writeFileSync, readFileSync, existsSync, mkdirSync  } from 'fs'
-import { fileURLToPath } from 'url';
 import path from 'path';
 const config = useRuntimeConfig();
 
@@ -12,8 +11,7 @@ const credentials = {
 const client = new KMSClient({ region: config.CmkRegion, credentials });
 
 // Keys directory
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
-const keysDirectory = path.join(__dirname, config.dataKeysDir || 'keys');
+const keysDirectory = path.join('server/', config.dataKeysDir || 'keys');
 if (!existsSync(keysDirectory)) {
   mkdirSync(keysDirectory, { recursive: true });
 }

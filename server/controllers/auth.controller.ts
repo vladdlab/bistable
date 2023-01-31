@@ -52,7 +52,6 @@ export const loginHandler = async (event: H3Event) => {
     const body: LoginUserInput = await readBody(event);
 
     const user = await findUser({ email: body.email });
-    console.log(body, user)
 
     // Check if user exist and password is correct
     if (!user || user.password !== body.password) {
