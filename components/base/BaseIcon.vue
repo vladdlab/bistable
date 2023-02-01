@@ -12,7 +12,11 @@ const props = withDefaults(defineProps<{
 })
 
 const size = computed(() => {
-  const sizes = { 'sm': 4, 'md': 8, 'lg': 10 }
-  return `w-${sizes[props.size]} h-${sizes[props.size]}`
+  const sizes = {
+    sm: 'w-4 h-4',
+    md: 'w-6 h-6',
+    lg: 'w-10 h-10'
+  }
+  return sizes[props.size]
 })
 </script>
