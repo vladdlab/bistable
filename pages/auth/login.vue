@@ -1,21 +1,49 @@
 <template>
   <div class="w-100 h-screen grid grid-cols-12">
-    <div class="flex items-center justify-center col-span-4 p-4">
-      <form @submit="login" class="flex flex-col items-center gap-3">
-        <BaseInput v-model="email" placeholder="E-mail" type="email" autocomplete="username" />
-        <span class="text-xs text-red-500">{{ errors.email }}</span>
+    <div class="flex flex-col col-span-5 p-4">
+      <div class="flex-grow flex flex-col items-center justify-center">
+        <BaseForm @submit="login" :errors="loginErrors" class="flex w-3/5">
+          <h1 class="sr-only">Login Form</h1>
+          <p class="text-4xl font-bold mb-3">Hey, hello! <span>👋</span></p>
+          <p class="text-slate-500 text-sm mb-8">It's so good to see you again! Enter your credentials to access your account.</p>
 
-        <BaseInput v-model="password" placeholder="Пароль" type="password" autocomplete="current-password" />
-        <span class="text-xs text-red-500">{{ errors.password }}</span>
+          <BaseInput
+            v-model="email"
+            type="email"
+            label="Email Address"
+            autocomplete="email"
+            placeholder="awesome@email.com"
+            :error-message="errors.email"
+            size="lg"
+          />
 
-        <button class="bg-slate-300 text-slate-700 px-5 py-1 rounded-md">Войти</button>
+          <BaseInput
+            v-model="password"
+            label="Password"
+            placeholder="8+ characters required"
+            type="password"
+            autocomplete="current-password"
+            :error-message="errors.password"
+            size="lg"
+          />
 
-        <p class="text-xs text-red-500">{{ errorMessage }}</p>
+          <div class="flex justify-between text-sm mt-3">
+            <BaseCheckbox v-model="rememberMe" label="Keep me signed in" class="text-slate-500" />
+            <NuxtLink class="text-green-500">Forgot password?</NuxtLink>
+          </div>
 
-        <NuxtLink to="register" class="text-green-500">Ещё нет аккаунта?</NuxtLink>
-      </form>
+          <BaseButton class="bg-green-500 text-white mt-5" type="submit" size="lg" :loading="isSubmitting" :disabled="isSubmitting">Login</BaseButton>
+        </BaseForm>
+
+      </div>
+
+      <p class="text-center">
+        Don't have account yet?
+        <NuxtLink to="register" class="text-green-500">Sign Up!</NuxtLink>
+      </p>
+
     </div>
-    <div class="col-span-8 bg-gradient-to-r from-green-500 to-emerald-400">
+    <div class="col-span-7 bg-monstera-image bg-center bg-local bg-contain bg-no-repeat">
 
     </div>
   </div>
@@ -23,36 +51,40 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+import type { Ref } from 'vue'
 import { useField, useForm } from 'vee-validate';
 import { toFormValidator } from '@vee-validate/zod';
 import { loginUserSchema } from '~~/server/schemas/user.schema';
 
 definePageMeta({
-layout: "auth",
+  layout: "auth",
+  title: 'Login'
 });
 
 // Form Schema
 const validationSchema = toFormValidator(loginUserSchema.shape.body)
-const { handleSubmit, errors } = useForm({
+const { handleSubmit, errors, isSubmitting } = useForm({
   validationSchema,
   initialValues: {
     email: '',
-    password: ''
+    password: '',
+    rememberMe: false,
   },
 });
 
 // Form fields
 const { value: email } = useField<string>('email');
 const { value: password } = useField<string>('password');
+const { value: rememberMe } = useField<boolean>('rememberMe');
 
 // Form's general error text
-const errorMessage = ref('')
+let loginErrors: Ref<string[]> = ref([])
 
 // Form handler
 const login = handleSubmit(async (values) => {
   const { error } = await useFetch('/api/auth/login', { method: 'POST', body: values})
-  if (error.value) {
-    errorMessage.value = error.value.statusMessage || '';
+  if (error.value && error.value.statusMessage) {
+    loginErrors.value = [error.value.statusMessage];
   } else {
     const router = useRouter();
     router.push('/dashboard');

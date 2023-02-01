@@ -1,9 +1,8 @@
 import jwt, { SignOptions } from 'jsonwebtoken';
-import { getEncryptedPrivateKey, decryptPrivateKey, getPublicKey } from './dataEncryptionKeys'
+import { getPrivateKey, getPublicKey } from './dataEncryptionKeys'
 
 export const signJwt = async (payload: Object, options: SignOptions = {}) => {
-  const encryptedPrivateKey = await getEncryptedPrivateKey();
-  const privateKey = await decryptPrivateKey(encryptedPrivateKey)
+  const privateKey = await getPrivateKey()
 
   return jwt.sign(payload, privateKey, {
     ...(options && options),

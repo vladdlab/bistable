@@ -1,10 +1,7 @@
 <template>
   <div class="flex flex-row items-center h-16 bg-white px-5">
     <BaseInput v-model="search" placeholder="Поиск" />
-    <button type="button" class="bg-slate-300 text-slate-700 px-2 py-1 rounded-md ml-auto" @click="logout">выйти</button>
-    <!-- <BaseAvatar class="ml-auto">
-      <BaseIcon name="mdi:user-circle" class="text-green-400" size="lg"/>
-    </BaseAvatar> -->
+    <BaseButton type="button" class="ml-auto" @click="logout">Logout</BaseButton>
   </div>
 </template>
 

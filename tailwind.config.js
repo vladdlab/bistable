@@ -9,7 +9,12 @@ module.exports = {
     "./app.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'rainbow-image': "url('~/assets/images/rainbow.svg')",
+        'monstera-image': "url('~/assets/images/monstera.svg')",
+      }
+    },
   },
   plugins: [],
 }

@@ -15,9 +15,11 @@ declare global {
       PROVIDER: 'aws' | 'azure' | 'gcp' | 'local';
       PROVIDER_ACCESS_KEY_ID: string;
       PROVIDER_SECRET_ACCESS_KEY: string;
-      DATA_KEYS_DIR: string;
       CMK_KEY: string;
       CMK_REGION: string;
+
+      DATA_KEY_PR: string,
+      DATA_KEY_PB: string,
     }
   }
 }

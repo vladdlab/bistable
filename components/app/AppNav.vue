@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col grow gap-6 items-center justify-center">
+  <div class="flex flex-col grow gap-8 items-center justify-center">
     <slot></slot>
   </div>
 </template>

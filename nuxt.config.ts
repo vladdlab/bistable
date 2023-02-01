@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     },
   },
   app: {
+    layoutTransition: { name: 'layout', mode: 'out-in' },
     pageTransition: { name: 'page', mode: 'out-in' }
   },
   runtimeConfig: {
@@ -19,10 +20,11 @@ export default defineNuxtConfig({
     provider: process.env.PROVIDER,
     providerAccessKeyId: process.env.PROVIDER_ACCESS_KEY_ID,
     providerSecretAccessKey: process.env.PROVIDER_SECRET_ACCESS_KEY,
-    dataKeysDir: process.env.DATA_KEYS_DIR,
     CmkKey: process.env.CMK_KEY,
     CmkRegion: process.env.CMK_REGION,
     accessTokenExpiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN,
+    dataKeyPr: process.env.DATA_KEY_PR,
+    dataKeyPb: process.env.DATA_KEY_PB
 
   },
   nitro: {

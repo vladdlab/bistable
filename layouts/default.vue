@@ -32,7 +32,9 @@
 </template>
 
 <script setup>
-
+useHead({
+  title: 'BiStable'
+})
 
 </script>
 
