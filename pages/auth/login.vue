@@ -32,7 +32,7 @@
             <NuxtLink class="text-green-500">Forgot password?</NuxtLink>
           </div>
 
-          <BaseButton class="bg-green-500 text-white mt-5" type="submit" size="lg" :loading="isSubmitting" :disabled="isSubmitting">Login</BaseButton>
+          <BaseButton class="mt-5" type="submit" size="lg" :loading="isSubmitting" :disabled="isSubmitting">Login</BaseButton>
         </BaseForm>
 
       </div>

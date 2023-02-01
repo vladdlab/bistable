@@ -37,7 +37,7 @@
             size="lg"
           />
 
-          <BaseButton class="bg-green-500 text-white mt-5" type="submit" size="lg" :loading="isSubmitting" :disabled="isSubmitting">Sign Up</BaseButton>
+          <BaseButton class="mt-5" type="submit" size="lg" :loading="isSubmitting" :disabled="isSubmitting">Sign Up</BaseButton>
         </BaseForm>
       </div>
 
