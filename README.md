@@ -1,8 +1,6 @@
 # BiStable
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4516776b-e831-4abc-bd98-f1d27b1e58fa/deploy-status)](https://app.netlify.com/sites/bistable/deploys)
-
-[BiStable](https://bistable.netlify.app/) is a free and open-source web application designed to assist individuals with bipolar disorder in managing their mental health. The application is built using cutting-edge technologies such as Vue 3, Nuxt 3, TypeScript, Zod for validation, MongoDB for database management with client-side encryption, and AWS KMS for storing encryption keys.
+[BiStable](https://bistable.vercel.app/) is a free and open-source web application designed to assist individuals with bipolar disorder in managing their mental health. The application is built using cutting-edge technologies such as Vue 3, Nuxt 3, TypeScript, Zod for validation, MongoDB for database management with client-side encryption, and AWS KMS for storing encryption keys.
 
 ## About the project
 The purpose of BiStable is to provide a user-friendly platform for individuals with bipolar disorder to track their mood swings, symptoms, and medication usage. The application also offers resources and support to help users better understand their condition and manage their mental health.
@@ -25,7 +23,7 @@ The purpose of BiStable is to provide a user-friendly platform for individuals w
 - AWS KMS - A key management service for securely storing and managing encryption keys
 
 ## Usage
-You can access the BiStable web application at [https://bistable.netlify.app](https://bistable.netlify.app).
+You can access the BiStable web application at [https://bistable.vercel.app/](https://bistable.vercel.app/).
 
 ## Contributing
 I welcome contributions to the BiStable project. If you're interested in contributing, please contact me.
