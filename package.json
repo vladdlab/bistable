@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@aws-sdk/client-kms": "^3.258.0",
-    "@mongodb-js/zstd": "^1.1.0",
     "@types/jsonwebtoken": "^9.0.1",
     "@vee-validate/zod": "^4.7.3",
     "jsonwebtoken": "^9.0.0",
