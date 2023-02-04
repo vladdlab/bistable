@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@aws-sdk/client-kms': ^3.258.0
+  '@mongodb-js/zstd': ^1.1.0
   '@types/jsonwebtoken': ^9.0.1
   '@vee-validate/zod': ^4.7.3
   autoprefixer: ^10.4.13
@@ -17,6 +18,7 @@ specifiers:
 
 dependencies:
   '@aws-sdk/client-kms': 3.264.0
+  '@mongodb-js/zstd': 1.1.0
   '@types/jsonwebtoken': 9.0.1
   '@vee-validate/zod': 4.7.3_f2btg7zmr5jfq4gp3vvwlannri
   jsonwebtoken: 9.0.0
@@ -1532,6 +1534,82 @@ packages:
       - encoding
       - supports-color
     dev: true
+
+  /@mongodb-js/zstd-darwin-arm64/1.1.0:
+    resolution: {integrity: sha512-3XUa82KqWvtFEsx8WYwgdVCjC5Xnz77Hg54O3q7sw8LVPM/faFnGKGH2NSmNnucbabtEpLECz4iahK0bUotl4Q==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@mongodb-js/zstd-darwin-x64/1.1.0:
+    resolution: {integrity: sha512-5veErRDyMHJbq/3cRSMrg6WkByXHhmhqZAK7Y4gn8owHcSIuC4ztOT+cH7AQWI7M47JkpcJX640cOMYYtWJbfg==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@mongodb-js/zstd-linux-arm64-gnu/1.1.0:
+    resolution: {integrity: sha512-M5FRUlDUV3PvpAM/VmPLVczDJOZOaT7qxl1i6fXNGZ0DDmnSDigZBUmc+w3tQGKi0/VRZiwdyBZcQQgqBeKr7g==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@mongodb-js/zstd-linux-arm64-musl/1.1.0:
+    resolution: {integrity: sha512-3EdhHJKOd/8eXg4Q/ID+HGKUifIY0dqULPGpFveM7iBpV0QrpVOU7iDjVoFEROTqUubHN246Lmvj7VZ3z4F9+A==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@mongodb-js/zstd-linux-x64-gnu/1.1.0:
+    resolution: {integrity: sha512-kNLvetxCFYx7QPEo/kR8h3ZApvjXtUYWuct9Mz52Rw67K3Cq5fJDjTAhroMsJCK2doNgjI1dxAQIhZziwnaMCg==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@mongodb-js/zstd-linux-x64-musl/1.1.0:
+    resolution: {integrity: sha512-lJxI/4kVPQUXWRxi4DOpBziO1y8EFuBGp7QLWzPgVhxY8boGYQhybZqj2L+KmLG3gsrh4dstQWhaIojDRM7UiQ==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@mongodb-js/zstd-win32-x64-msvc/1.1.0:
+    resolution: {integrity: sha512-nct2+7xL5FYeteH+nLCskYerHE7yaneqGJuR2/2n4GsUPMyIbyKwa0VOEAKP1QF/OrwLMswtdRUPtyI8q2PF9Q==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@mongodb-js/zstd/1.1.0:
+    resolution: {integrity: sha512-+dRj3tSgenHhdqZ1d9ii7PKrXerXOZgDKJE9E2IFxC2lOecgOnSnInAD1o6hCFmyJ5NDQrcsrJKxkOlptwA1mw==}
+    engines: {node: '>= 10'}
+    optionalDependencies:
+      '@mongodb-js/zstd-darwin-arm64': 1.1.0
+      '@mongodb-js/zstd-darwin-x64': 1.1.0
+      '@mongodb-js/zstd-linux-arm64-gnu': 1.1.0
+      '@mongodb-js/zstd-linux-arm64-musl': 1.1.0
+      '@mongodb-js/zstd-linux-x64-gnu': 1.1.0
+      '@mongodb-js/zstd-linux-x64-musl': 1.1.0
+      '@mongodb-js/zstd-win32-x64-msvc': 1.1.0
+    dev: false
 
   /@netlify/functions/1.4.0:
     resolution: {integrity: sha512-gy7ULTIRroc2/jyFVGx1djCmmBMVisIwrvkqggq5B6iDcInRSy2Tpkm+V5C63hKJVkNRskKWtLQKm9ecCaQTjA==}
