@@ -28,6 +28,7 @@ export default defineNuxtConfig({
 
   },
   nitro: {
+    preset: 'netlify-edge',
     storage: {
       'redis': {
         driver: 'redis',
