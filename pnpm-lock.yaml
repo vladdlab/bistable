@@ -8,6 +8,7 @@ specifiers:
   '@vee-validate/zod': ^4.7.3
   autoprefixer: ^10.4.13
   jsonwebtoken: ^9.0.0
+  kerberos: ^2.0.1
   mongodb: ~5.0.0
   mongodb-client-encryption: ^2.3.0
   nuxt: ^3.1.2
@@ -24,6 +25,7 @@ dependencies:
   '@types/jsonwebtoken': 9.0.1
   '@vee-validate/zod': 4.7.3_f2btg7zmr5jfq4gp3vvwlannri
   jsonwebtoken: 9.0.0
+  kerberos: 2.0.1
   mongodb: 5.0.0_zazwblflchh5marelfi6u3immu
   mongodb-client-encryption: 2.4.0_bfhhypmip4hn7ngzb2shphqexe
   vee-validate: 4.7.3
@@ -3939,6 +3941,16 @@ packages:
     dependencies:
       jwa: 1.4.1
       safe-buffer: 5.2.1
+    dev: false
+
+  /kerberos/2.0.1:
+    resolution: {integrity: sha512-O/jIgbdGK566eUhFwIcgalbqirYU/r76MW7/UFw06Fd9x5bSwgyZWL/Vm26aAmezQww/G9KYkmmJBkEkPk5HLw==}
+    engines: {node: '>=12.9.0'}
+    requiresBuild: true
+    dependencies:
+      bindings: 1.5.0
+      node-addon-api: 4.3.0
+      prebuild-install: 7.1.1
     dev: false
 
   /klona/2.0.6:
