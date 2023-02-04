@@ -1,6 +1,6 @@
 <template>
   <button
-    class="bg-slate-300 text-slate-700 rounded-md"
+    class="bg-green-500 text-white  rounded-md"
     :class="btnClasses"
   >
     <slot v-if="!loading"/>

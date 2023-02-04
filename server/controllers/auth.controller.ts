@@ -3,17 +3,6 @@ import { createUser, findUser, signToken } from '~~/server/services/user.service
 import { LoginUserInput, RegisterUserInput } from '~~/server/schemas/user.schema';
 const config = useRuntimeConfig();
 
-// Cookie options
-const accessTokenCookieOptions = {
-  expires: new Date(
-    Date.now() + +config.accessTokenExpiresIn * 60 * 1000
-  ),
-  maxAge: +config.accessTokenExpiresIn * 60 * 1000,
-  httpOnly: true,
-  sameSite: "lax",
-  secure: true,
-};
-
 export const registerHandler = async (event: H3Event) => {
   try {
     const body: RegisterUserInput = await readBody(event);
@@ -23,14 +12,18 @@ export const registerHandler = async (event: H3Event) => {
     const accessToken = await signToken(user);
 
     // Send Access Token in Cookie
-    setCookie(event, 'accessToken', accessToken, {
-      ...accessTokenCookieOptions,
-      sameSite: "lax",
-      secure: false
-     })
+    const accessTokenCookieOptions = {
+      expires: new Date(
+        Date.now() + +config.accessTokenExpiresIn * 60 * 1000
+      ),
+      maxAge: +config.accessTokenExpiresIn * 60 * 1000,
+      httpOnly: true,
+      secure: true,
+      sameSite: "lax" as "lax",
+    };
+    setCookie(event, 'accessToken', accessToken, accessTokenCookieOptions)
     setCookie(event, 'logged_in', 'true', {
       ...accessTokenCookieOptions,
-      sameSite: "lax",
       httpOnly: false,
     })
 
@@ -62,14 +55,18 @@ export const loginHandler = async (event: H3Event) => {
     const accessToken = await signToken(user);
 
     // Send Access Token in Cookie
-    setCookie(event, 'accessToken', accessToken, {
-      ...accessTokenCookieOptions,
-      sameSite: "lax",
-      secure: false
-     })
+    const accessTokenCookieOptions = {
+      expires: new Date(
+        Date.now() + +config.accessTokenExpiresIn * 60 * 1000
+      ),
+      maxAge: +config.accessTokenExpiresIn * 60 * 1000,
+      httpOnly: true,
+      secure: true,
+      sameSite: "lax" as "lax",
+    };
+    setCookie(event, 'accessToken', accessToken, accessTokenCookieOptions)
     setCookie(event, 'logged_in', 'true', {
       ...accessTokenCookieOptions,
-      sameSite: "lax",
       httpOnly: false,
     })
 
