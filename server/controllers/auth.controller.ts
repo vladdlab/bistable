@@ -1,6 +1,6 @@
 import { H3Event, createError, readBody, setCookie } from 'h3'
 import { createUser, findUser, signToken } from '~~/server/services/user.service';
-import { LoginUserInput, RegisterUserInput } from '~~/server/schemas/user.schema';
+import { LoginUserInput, RegisterUserInput } from '~~/schemas/user.schema';
 const config = useRuntimeConfig();
 
 export const registerHandler = async (event: H3Event) => {

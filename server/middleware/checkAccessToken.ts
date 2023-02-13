@@ -27,6 +27,8 @@ export default defineEventHandler(async (event: H3Event) => {
       const decoded = await verifyJwt<{ sub: string }>(access_token);
 
       if (!decoded) {
+        deleteCookie(event, 'accessToken')
+        deleteCookie(event, 'logged_in')
         throw createError({ status: 401, message: `Invalid token or user doesn't exist` })
       }
 
@@ -34,6 +36,8 @@ export default defineEventHandler(async (event: H3Event) => {
       const session = await useStorage().getItem(decoded.sub);
 
       if (!session) {
+        deleteCookie(event, 'accessToken')
+        deleteCookie(event, 'logged_in')
         throw createError({ status: 401, message: `User session has expired` })
       }
 
@@ -41,6 +45,8 @@ export default defineEventHandler(async (event: H3Event) => {
       const user = await findUserById(session._id);
 
       if (!user) {
+        deleteCookie(event, 'accessToken')
+        deleteCookie(event, 'logged_in')
         throw createError({ status: 401, message: `User with that token no longer exist` })
       }
 

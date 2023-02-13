@@ -6,14 +6,14 @@
 </template>
 
 <script setup>
-const search = ref('')
-const router = useRouter();
+const { logout: logoutRequest } = useAuth();
+const search = ref('');
+
 async function logout() {
-  try {
-    await useFetch('/api/auth/logout', { method: 'POST' });
-    router.push('/auth/login')
-  } catch (error) {
-    console.error(error)
+  const { error } = await logoutRequest('/api/auth/logout');
+  if (!error.value) {
+    const router = useRouter();
+    router.push('/auth/login');
   }
 }
 </script>

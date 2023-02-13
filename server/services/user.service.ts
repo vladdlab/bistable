@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
 import { client, encryption } from "~~/server/utils/mongoDb";
 import { signJwt } from '~~/server/utils/jwt'
-import { User } from '~~/server/schemas/user.schema'
+import { User } from '~~/schemas/user.schema'
 const config = useRuntimeConfig();
 
 

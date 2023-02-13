@@ -2,7 +2,7 @@
   <div class="w-100 h-screen grid grid-cols-12">
     <div class="flex flex-col col-span-5 p-4">
       <div class="flex-grow flex flex-col items-center justify-center">
-        <BaseForm @submit="register" :errors="registerErrors" class="w-3/5">
+        <BaseForm @submit="handler" :errors="registerErrors" class="w-3/5">
           <h1 class="sr-only">Sign Up Form</h1>
           <p class="text-4xl font-bold mb-3">Get Started <span>🤝</span></p>
           <p class="text-slate-500 text-sm mb-8">Let's create your account. We'd love for you to join. Keep in mind, this application is completely free!</p>
@@ -55,7 +55,7 @@ import { ref } from 'vue'
 import type { Ref } from 'vue'
 import { useField, useForm } from 'vee-validate'
 import { toFormValidator } from '@vee-validate/zod'
-import { registerUserSchema } from '~~/server/schemas/user.schema'
+import { registerUserSchema } from '~~/schemas/user.schema'
 
 definePageMeta({
   layout: 'auth',
@@ -82,8 +82,9 @@ const { value: password } = useField<string>('password')
 const registerErrors: Ref<string[]> = ref([])
 
 // Form handler
-const register = handleSubmit(async (values) => {
-  const { error } = await useFetch('/api/auth/register', { method: 'POST', body: values })
+const { register } = useAuth();
+const handler = handleSubmit(async (values) => {
+  const { error } = await register(values)
   if (error.value) {
     registerErrors.value = [error.value.data.message]
   } else {

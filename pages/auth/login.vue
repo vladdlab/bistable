@@ -2,7 +2,7 @@
   <div class="w-100 h-screen grid grid-cols-12">
     <div class="flex flex-col col-span-5 p-4">
       <div class="flex-grow flex flex-col items-center justify-center">
-        <BaseForm @submit="login" :errors="loginErrors" class="flex w-3/5">
+        <BaseForm @submit="handler" :errors="loginErrors" class="flex w-3/5">
           <h1 class="sr-only">Login Form</h1>
           <p class="text-4xl font-bold mb-3">Hey, hello! <span>👋</span></p>
           <p class="text-slate-500 text-sm mb-8">It's so good to see you again! Enter your credentials to access your account.</p>
@@ -54,7 +54,7 @@ import { ref } from 'vue';
 import type { Ref } from 'vue'
 import { useField, useForm } from 'vee-validate';
 import { toFormValidator } from '@vee-validate/zod';
-import { loginUserSchema } from '~~/server/schemas/user.schema';
+import { loginUserSchema } from '~~/schemas/user.schema';
 
 definePageMeta({
   layout: "auth",
@@ -81,8 +81,9 @@ const { value: rememberMe } = useField<boolean>('rememberMe');
 let loginErrors: Ref<string[]> = ref([])
 
 // Form handler
-const login = handleSubmit(async (values) => {
-  const { error } = await useFetch('/api/auth/login', { method: 'POST', body: values})
+const { login } = useAuth();
+const handler = handleSubmit(async (values) => {
+  const { error } = await login(values)
   if (error.value && error.value.statusMessage) {
     loginErrors.value = [error.value.statusMessage];
   } else {
