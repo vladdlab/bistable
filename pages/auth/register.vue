@@ -1,8 +1,8 @@
 <template>
   <div class="w-100 h-screen grid grid-cols-12">
-    <div class="flex flex-col col-span-5 p-4">
+    <div class="flex flex-col col-span-full sm:col-span-5 p-4">
       <div class="flex-grow flex flex-col items-center justify-center">
-        <BaseForm @submit="handler" :errors="registerErrors" class="w-3/5">
+        <BaseForm @submit="handler" :errors="registerErrors" class="sm:w-3/5">
           <h1 class="sr-only">Sign Up Form</h1>
           <p class="text-4xl font-bold mb-3">Get Started <span>🤝</span></p>
           <p class="text-slate-500 text-sm mb-8">Let's create your account. We'd love for you to join. Keep in mind, this application is completely free!</p>
@@ -46,7 +46,7 @@
         <NuxtLink to="login" class="text-green-500">Log in!</NuxtLink>
       </p>
     </div>
-    <div class="col-span-7 bg-rainbow-image bg-center bg-local bg-contain bg-no-repeat"></div>
+    <div class="hidden sm:block col-span-7 bg-rainbow-image bg-center bg-local bg-contain bg-no-repeat"></div>
   </div>
 </template>
 

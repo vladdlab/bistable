@@ -1,8 +1,8 @@
 <template>
   <div class="w-100 h-screen grid grid-cols-12">
-    <div class="flex flex-col col-span-5 p-4">
+    <div class="flex flex-col col-span-full sm:col-span-5 p-4">
       <div class="flex-grow flex flex-col items-center justify-center">
-        <BaseForm @submit="handler" :errors="loginErrors" class="flex w-3/5">
+        <BaseForm @submit="handler" :errors="loginErrors" class="flex sm:w-3/5">
           <h1 class="sr-only">Login Form</h1>
           <p class="text-4xl font-bold mb-3">Hey, hello! <span>👋</span></p>
           <p class="text-slate-500 text-sm mb-8">It's so good to see you again! Enter your credentials to access your account.</p>
@@ -43,7 +43,7 @@
       </p>
 
     </div>
-    <div class="col-span-7 bg-monstera-image bg-center bg-local bg-contain bg-no-repeat">
+    <div class="hidden sm:block col-span-7 bg-monstera-image bg-center bg-local bg-contain bg-no-repeat">
 
     </div>
   </div>
